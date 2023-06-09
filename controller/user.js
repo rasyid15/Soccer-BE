@@ -30,10 +30,11 @@ exports.login = (req, res) => {
     }
 }
 
-exports.logout = (req,res) => {
+exports.logout = (req, res) => {
     try {
-        
+        res.clearCookie("token")
+        return response(res, "Sukses Logout", null, 200)
     } catch (error) {
-        
+        return response(res, error.message, error, 400)
     }
 }

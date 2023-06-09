@@ -1,5 +1,6 @@
 const express = require('express')
 const cors = require("cors")
+const cookieParser = require("cookie-parser")
     // const bodyParser = require("body-parser")
 const teamRoute = require("./routes/teamRoute")
 const playerRoute = require("./routes/playerRoute")
@@ -9,6 +10,7 @@ const cardRoute = require("./routes/cardRoute")
 const ballPosRoute = require("./routes/ballPosRoute")
 const osRoute = require("./routes/offsideRoute")
 const switchPlayer = require("./routes/switchRoute")
+const userRoute = require("./routes/user")
 const dotenv = require("dotenv")
 dotenv.config()
 
@@ -20,6 +22,7 @@ const app = express()
 app.use(express.urlencoded({ extended: false }))
 app.use(express.json())
 app.use(cors())
+app.use(cookieParser())
 
 app.use(express.static("./public"))
 app.use("/team", teamRoute)
@@ -30,6 +33,7 @@ app.use("/card", cardRoute)
 app.use("/bp", ballPosRoute)
 app.use("/os", osRoute)
 app.use("/switch", switchPlayer)
+app.use("/user", userRoute)
 
 
 app.listen(PORT, () => {
